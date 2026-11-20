@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Product Form</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 20px 5.3%;
+      color: #111;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 20px;
+    }
+    h1 {
+      margin: 0 0 82px -40px;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 28px;
+      color: #292929;
+    }
+    form { width: 100%; }
+    fieldset {
+      border: 1px solid #aaa;
+      border-radius: 8px;
+      padding: 10px 16px 18px;
+      margin: 0 0 10px;
+      box-shadow: 0 0 1px #999;
+    }
+    legend { padding: 0 3px; }
+    .form-row {
+      display: grid;
+      grid-template-columns: 220px minmax(0, 1fr);
+      align-items: start;
+      gap: 0;
+      margin: 0 0 9px;
+    }
+    label { padding-top: 6px; }
+    input[type="text"], input[type="number"], input[type="email"] {
+      width: 271px;
+      height: 37px;
+      padding: 5px 9px;
+      font: inherit;
+      border: 1px solid #888;
+      border-radius: 4px;
+    }
+    textarea {
+      width: 100%;
+      height: 140px;
+      padding: 8px;
+      font: inherit;
+      border: 1px solid #888;
+      border-radius: 4px;
+      resize: both;
+    }
+    select {
+      width: 156px;
+      height: 46px;
+      padding: 5px 9px;
+      font: inherit;
+      border: 1px solid #888;
+      border-radius: 2px;
+      background: white;
+    }
+    .choice-group {
+      min-height: 27px;
+      padding-top: 3px;
+    }
+    .choice-group label {
+      display: inline-flex;
+      align-items: center;
+      padding: 0;
+      margin-right: 4px;
+      gap: 3px;
+      white-space: nowrap;
+    }
+    input[type="checkbox"], input[type="radio"] {
+      width: 20px;
+      height: 20px;
+      margin: 0;
+    }
+    button {
+      display: block;
+      margin: 20px 0 0 auto;
+      padding: 9px 11px;
+      color: white;
+      background: #0800f5;
+      border: 2px solid #777;
+      border-radius: 9px;
+      font: inherit;
+      cursor: pointer;
+    }
+    button:hover { background: #1710d8; }
+    @media (max-width: 700px) {
+      body { margin: 20px; font-size: 17px; }
+      h1 { margin: 0 0 45px; font-size: 25px; }
+      .form-row { grid-template-columns: 1fr; gap: 5px; }
+      input[type="text"], input[type="number"], input[type="email"],
+      textarea, select { max-width: 100%; }
+      fieldset { padding: 10px 12px 15px; }
+    }
+  </style>
+</head>
+<body>
+ 
+
+  <form action="https://teach-backend-fawn.vercel.app/api/product"
+        method="POST"
+        enctype="multipart/form-data">
+
+    <fieldset>
+      <legend>General Info</legend>
+
+      <div class="form-row">
+        <label for="itemName">Item Name</label>
+        <input type="text" id="itemName" name="itemName" value="Classic Backpack" required>
+      </div>
+
+      <div class="form-row">
+        <label for="itemDescription">Description</label>
+        <textarea id="itemDescription" name="itemDescription">A durable everyday backpack with multiple compartments.</textarea>
+      </div>
+
+      <div class="form-row">
+        <label for="category">Category</label>
+        <select id="category" name="category">
+          <option value="notSpecified" selected>notSpecified</option>
+          <option value="consumption">consumption</option>
+          <option value="household">household</option>
+          <option value="electronic">electronic</option>
+          <option value="gadget">gadget</option>
+        </select>
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend>Misc.</legend>
+
+      <div class="form-row">
+        <label for="inventoryAmount">Inventory Amount</label>
+        <input type="number" id="inventoryAmount" name="inventoryAmount" value="50" min="0">
+      </div>
+
+      <div class="form-row">
+        <label for="listPrice">List price</label>
+        <input type="number" id="listPrice" name="listPrice" value="890" min="0" step="0.01">
+      </div>
+
+      <div class="form-row">
+        <label>Available Stores</label>
+        <div class="choice-group">
+          <label><input type="checkbox" name="availableStore[]" value="Bangkok" checked>Bangkok</label>
+          <label><input type="checkbox" name="availableStore[]" value="Pattaya">Pattaya</label>
+          <label><input type="checkbox" name="availableStore[]" value="Phuket" checked>Phuket</label>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <label>Status</label>
+        <div class="choice-group">
+          <label><input type="radio" name="status" value="Active" checked>Active</label>
+          <label><input type="radio" name="status" value="Inactive">Inactive</label>
+        </div>
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend>Staff</legend>
+      <div class="form-row">
+        <label for="staffEmail">Staff Email</label>
+        <input type="email" id="staffEmail" name="staffEmail" value="kaunghsuthway25@gmail.com" required>
+      </div>
+    </fieldset>
+
+    <button type="submit">Submit Form</button>
+  </form>
+</body>
+</html>
